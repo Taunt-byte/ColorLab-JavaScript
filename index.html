@@ -1,16 +1,469 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Desafio</title>
-    <!--Custon CSS-->
-    <link rel="stylesheet" href="assets/css/estilo.css" >
+
+    <meta name="description" content="ColorLab - Uma ferramenta interativa para explorar cores, criar paletas e gerar gradientes.">
+
+    <title>ColorLab | Interactive Color Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <h1>Aperte o botão para mudar a cor</h1>
-    <button>Botão</button>
+
+    <!-- =================================
+         HEADER
+    ================================== -->
+
+    <header class="header">
+
+        <div class="container navbar">
+
+            <a href="#" class="brand">
+                <span class="brand-icon">C</span>
+                <span>Color<span class="brand-highlight">Lab</span></span>
+            </a>
+
+            <nav class="navigation">
+                <a href="#studio">Studio</a>
+                <a href="#palettes">Paletas</a>
+                <a href="#history">Histórico</a>
+                <a href="#gradients">Gradientes</a>
+            </nav>
+
+            <div class="header-tag">
+                <span class="status-dot"></span>
+                JavaScript Color Studio
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- =================================
+             HERO
+        ================================== -->
+
+        <section class="hero" id="studio">
+
+            <div class="hero-text">
+
+                <span class="eyebrow">INTERACTIVE COLOR TOOL</span>
+
+                <h1>
+                    Explore o universo
+                    <br>
+                    das <span>cores.</span>
+                </h1>
+
+                <p>
+                    Escolha, experimente e crie combinações.
+                    Uma ferramenta simples para transformar
+                    ideias em cores.
+                </p>
+
+            </div>
+
+            <div class="hero-decoration">
+                <div class="decoration-circle circle-one"></div>
+                <div class="decoration-circle circle-two"></div>
+                <div class="decoration-circle circle-three"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             COLOR STUDIO
+        ================================== -->
+
+        <section class="studio-grid">
+
+            <!-- VISUALIZAÇÃO DA COR -->
+
+            <div class="preview-card">
+
+                <div class="preview-top">
+                    <span>COLOR PREVIEW</span>
+                    <span class="live-indicator">LIVE PREVIEW</span>
+                </div>
+
+                <div class="color-preview" id="color-preview">
+
+                    <div class="preview-content">
+
+                        <span>YOUR COLOR</span>
+
+                        <h2 id="preview-hex">#8B5CF6</h2>
+
+                        <p>Beautiful colors start here.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="preview-footer">
+
+                    <div>
+                        <span class="footer-label">CURRENT COLOR</span>
+                        <strong id="current-color-name">Violet</strong>
+                    </div>
+
+                    <button class="icon-button" id="favorite-btn"
+                            aria-label="Adicionar aos favoritos"
+                            title="Adicionar aos favoritos">
+                        <span id="favorite-icon">♡</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAINEL DE CONTROLE -->
+
+            <div class="control-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <span class="eyebrow">COLOR CONTROLS</span>
+                        <h2>Customize your color</h2>
+                    </div>
+
+                    <button class="random-button" id="random-btn">
+                        <span>✦</span>
+                        Random
+                    </button>
+
+                </div>
+
+
+                <!-- COLOR PICKER -->
+
+                <div class="picker-section">
+
+                    <label for="color-picker">
+                        Choose your color
+                    </label>
+
+                    <div class="picker-wrapper">
+
+                        <input
+                            type="color"
+                            id="color-picker"
+                            value="#8B5CF6"
+                        >
+
+                        <div class="hex-input-wrapper">
+
+                            <span>#</span>
+
+                            <input
+                                type="text"
+                                id="hex-input"
+                                value="8B5CF6"
+                                maxlength="7"
+                                aria-label="Código HEX"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORMATOS DE COR -->
+
+                <div class="formats-section">
+
+                    <div class="section-label">
+                        <span>COLOR FORMATS</span>
+                        <span>CLICK TO COPY</span>
+                    </div>
+
+                    <div class="format-card" data-format="hex">
+
+                        <div>
+                            <span>HEX</span>
+                            <strong id="hex-value">#8B5CF6</strong>
+                        </div>
+
+                        <button class="copy-btn" data-copy="hex">
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <div class="format-card" data-format="rgb">
+
+                        <div>
+                            <span>RGB</span>
+                            <strong id="rgb-value">139, 92, 246</strong>
+                        </div>
+
+                        <button class="copy-btn" data-copy="rgb">
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <div class="format-card" data-format="hsl">
+
+                        <div>
+                            <span>HSL</span>
+                            <strong id="hsl-value">258, 90%, 66%</strong>
+                        </div>
+
+                        <button class="copy-btn" data-copy="hsl">
+                            Copy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             PREDEFINED PALETTES
+        ================================== -->
+
+        <section class="content-section" id="palettes">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="eyebrow">CURATED COLORS</span>
+                    <h2>Explore palettes.</h2>
+                    <p>Combinações selecionadas para inspirar seus projetos.</p>
+                </div>
+
+            </div>
+
+            <div class="palette-grid" id="palette-grid">
+
+                <!-- Preenchido pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             HISTORY AND FAVORITES
+        ================================== -->
+
+        <section class="content-section" id="history">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="eyebrow">YOUR COLLECTION</span>
+                    <h2>Color library.</h2>
+                    <p>Suas cores recentes e combinações favoritas.</p>
+                </div>
+
+            </div>
+
+            <div class="library-grid">
+
+                <div class="library-card">
+
+                    <div class="library-heading">
+                        <h3>Recent colors</h3>
+                        <span id="history-count">0 colors</span>
+                    </div>
+
+                    <div class="color-collection" id="history-list">
+                        <p class="empty-message">
+                            Your color history will appear here.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="library-card">
+
+                    <div class="library-heading">
+                        <h3>Favorite colors</h3>
+                        <span id="favorites-count">0 colors</span>
+                    </div>
+
+                    <div class="color-collection" id="favorites-list">
+                        <p class="empty-message">
+                            Your favorite colors will appear here.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             GRADIENT GENERATOR
+        ================================== -->
+
+        <section class="content-section" id="gradients">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="eyebrow">GRADIENT GENERATOR</span>
+                    <h2>Create something beautiful.</h2>
+                    <p>Combine duas cores e crie seu próprio gradiente.</p>
+                </div>
+
+            </div>
+
+            <div class="gradient-card">
+
+                <div class="gradient-preview" id="gradient-preview">
+                </div>
+
+                <div class="gradient-controls">
+
+                    <div class="gradient-color-group">
+
+                        <label for="gradient-color-one">
+                            First color
+                        </label>
+
+                        <input
+                            type="color"
+                            id="gradient-color-one"
+                            value="#8B5CF6"
+                        >
+
+                    </div>
+
+                    <div class="gradient-color-group">
+
+                        <label for="gradient-color-two">
+                            Second color
+                        </label>
+
+                        <input
+                            type="color"
+                            id="gradient-color-two"
+                            value="#EC4899"
+                        >
+
+                    </div>
+
+                    <div class="gradient-color-group direction-group">
+
+                        <label for="gradient-direction">
+                            Direction
+                        </label>
+
+                        <select id="gradient-direction">
+
+                            <option value="90deg">Horizontal</option>
+                            <option value="180deg">Vertical</option>
+                            <option value="45deg">Diagonal</option>
+                            <option value="135deg">Diagonal Reverse</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="gradient-code">
+
+                    <code id="gradient-code">
+                        linear-gradient(90deg, #8B5CF6, #EC4899)
+                    </code>
+
+                    <button class="copy-btn" id="copy-gradient">
+                        Copy CSS
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             FINAL CTA
+        ================================== -->
+
+        <section class="final-section">
+
+            <span class="eyebrow">KEEP CREATING</span>
+
+            <h2>
+                Every great design
+                <br>
+                starts with a color.
+            </h2>
+
+            <button class="random-button final-button" id="final-random">
+                Generate a new color ✦
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="#" class="brand">
+                <span class="brand-icon">C</span>
+                <span>Color<span class="brand-highlight">Lab</span></span>
+            </a>
+
+            <p>
+                Built with HTML, CSS and JavaScript.
+            </p>
+
+            <span>
+                © <span id="year"></span> ColorLab. All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- NOTIFICAÇÃO -->
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        Color copied!
+    </div>
+
+
     <script src="assets/js/app.js"></script>
+
 </body>
+
 </html>
